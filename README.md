@@ -1,5 +1,7 @@
 # WEBIN — Internship Job Portal
 
+🌐 **Live Website:** [https://webin-internship-portal.vercel.app](https://webin-internship-portal.vercel.app)
+
 A full-stack internship management system built with **FastAPI**, **MySQL**, and **React + Vite + Tailwind CSS**. Students can browse and apply for internship positions, companies manage applications, supervisors oversee interns, and admins control the entire platform.
 
 ---
