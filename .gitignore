@@ -1,0 +1,22 @@
+# Environment variables (contains passwords)
+backend/.env
+
+# Python cache
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+*.pyo
+
+# Virtual environment
+backend/venv/
+backend/env/
+
+# Node modules (too large, teacher runs npm install)
+Webin/node_modules/
+
+# Vite build output
+Webin/dist/
+
+# OS files
+.DS_Store
+Thumbs.db
