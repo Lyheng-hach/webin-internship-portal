@@ -2,8 +2,8 @@
 // Connects the React frontend to the FastAPI backend.
 // Base URL points to Vite dev proxy or direct FastAPI server.
 
-// Relative path — Vite dev proxy forwards /api/* to http://localhost:8000
-const BASE_URL = "/api";
+// In production use Railway URL directly; in dev use Vite proxy
+const BASE_URL = import.meta.env.VITE_API_BASE || "/api";
 
 // ── Helper ─────────────────────────────────────────────────────────────────────
 function getToken() {
