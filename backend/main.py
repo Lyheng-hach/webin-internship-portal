@@ -14,8 +14,12 @@ app = FastAPI(
 # ── CORS ──────────────────────────────────────────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allow all origins (local dev + Vercel production)
-    allow_credentials=False,
+    allow_origins=[
+        "http://localhost:5173",
+        "https://webin-internship-portal.vercel.app",
+        "https://*.vercel.app",
+    ],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
