@@ -1,9 +1,6 @@
 -- ============================================================
 --  WEBIN — Internship Job Portal Database
 
-CREATE DATABASE IF NOT EXISTS webin;
-USE webin;
-
 -- ============================================================
 -- TABLES
 -- ============================================================
@@ -202,6 +199,7 @@ CREATE TABLE Application (
     application_id    INT NOT NULL AUTO_INCREMENT,
     student_id        INT NOT NULL,
     intern_position_id INT NOT NULL,
+    document_id 		INT NOT NULL,
     apply_date        DATE NOT NULL DEFAULT (CURRENT_DATE),
     cover_letter      TEXT,
     remarks           TEXT,
@@ -215,6 +213,9 @@ CREATE TABLE Application (
                                                 ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT fk_application_intern_position   FOREIGN KEY (intern_position_id)
                                                 REFERENCES InternPosition(intern_position_id)
+                                                ON DELETE RESTRICT ON UPDATE CASCADE,
+	CONSTRAINT fk_application_document			FOREIGN KEY (document_id)
+												REFERENCES Document(document_id)
                                                 ON DELETE RESTRICT ON UPDATE CASCADE,
     CONSTRAINT uq_application_student_position  UNIQUE (student_id, intern_position_id)
 );
