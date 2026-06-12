@@ -260,10 +260,13 @@ const Rootapp = () => {
           <main className="flex-1 overflow-y-auto p-6">
             {loading ? (
               <div className="flex items-center justify-center h-full">
-                <div className="text-slate-500 text-sm font-mono animate-pulse">Loading data…</div>
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-8 h-8 border-2 border-sky-500 border-t-transparent rounded-full animate-spin"/>
+                  <div className="text-slate-500 text-sm">Loading data…</div>
+                </div>
               </div>
             ) : (
-              <>
+              <div key={page} className="animate-fade-up">
                 {page === "dashboard"     && <Dashboard      onNavigate={setPage} positions={positions} applications={applications} profile={profile} />}
                 {page === "browse"        && <Browse         positions={positions} documents={documents} applications={applications} />}
                 {page === "applications"  && <Applications   applications={applications} interviews={interviews} supervisors={supervisors} supervisionRequests={supervisionRequests} setSupervisionRequests={setSupervisionRequests} internHistory={internHistory} />}
@@ -273,7 +276,7 @@ const Rootapp = () => {
                 {page === "documents"     && <Documents      documents={documents} setDocuments={setDocuments} />}
                 {page === "notifications" && <Notifications  notifs={notifs} setNotifs={setNotifs} />}
                 {page === "profile"       && <Profile        profile={profile} onProfileCreated={handleProfileCreated} />}
-              </>
+              </div>
             )}
           </main>
         </div>

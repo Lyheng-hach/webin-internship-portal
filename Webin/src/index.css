@@ -3,16 +3,186 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-*{
+/* ─── Base ──────────────────────────────────────────────── */
+* {
   font-family: "Manrope", sans-serif;
   font-weight: 500;
-};
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 @theme {
   --color-primary: #5044E5;
-};
+}
+
+/* ─── Keyframes ─────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(28px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.93); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ─── Utility Animation Classes ─────────────────────────── */
+.animate-fade-up     { animation: fadeUp 0.55s cubic-bezier(.22,1,.36,1) both; }
+.animate-fade-in     { animation: fadeIn 0.4s ease both; }
+.animate-fade-down   { animation: fadeDown 0.45s cubic-bezier(.22,1,.36,1) both; }
+.animate-slide-left  { animation: slideInLeft 0.5s cubic-bezier(.22,1,.36,1) both; }
+.animate-slide-right { animation: slideInRight 0.5s cubic-bezier(.22,1,.36,1) both; }
+.animate-scale-in    { animation: scaleIn 0.4s cubic-bezier(.22,1,.36,1) both; }
+.animate-float       { animation: float 3s ease-in-out infinite; }
+.animate-pulse-soft  { animation: pulse-soft 2s ease-in-out infinite; }
+.animate-spin-slow   { animation: spin-slow 3s linear infinite; }
+
+/* Stagger delays */
+.delay-75  { animation-delay: 75ms; }
+.delay-100 { animation-delay: 100ms; }
+.delay-150 { animation-delay: 150ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* ─── Page Transition Wrapper ───────────────────────────── */
+.page-enter {
+  animation: fadeUp 0.45s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* ─── Cards ─────────────────────────────────────────────── */
+.card-hover {
+  transition: transform 0.25s cubic-bezier(.22,1,.36,1),
+              box-shadow 0.25s ease,
+              border-color 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+}
+
+/* ─── Buttons ───────────────────────────────────────────── */
+button, [role="button"] {
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+button:active:not(:disabled) {
+  transform: scale(0.97);
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ─── Inputs & Selects ──────────────────────────────────── */
+input, textarea, select {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+}
+
+/* ─── Links ─────────────────────────────────────────────── */
+a {
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+/* ─── Skeleton Loader ───────────────────────────────────── */
+.skeleton {
+  background: linear-gradient(90deg, #1e293b 25%, #334155 50%, #1e293b 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 6px;
+}
+.skeleton-light {
+  background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
+  background-size: 400px 100%;
+  animation: shimmer 1.4s infinite linear;
+  border-radius: 6px;
+}
+
+/* ─── Sidebar / Nav Items ───────────────────────────────── */
+.nav-item {
+  transition: background-color 0.18s ease, color 0.18s ease, transform 0.15s ease;
+}
+.nav-item:hover {
+  transform: translateX(2px);
+}
+
+/* ─── Modal / Dialog ────────────────────────────────────── */
+.modal-backdrop {
+  animation: fadeIn 0.2s ease both;
+}
+.modal-content {
+  animation: scaleIn 0.3s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* ─── Table Rows ────────────────────────────────────────── */
+tr {
+  transition: background-color 0.15s ease;
+}
+
+/* ─── Badges / Pills ────────────────────────────────────── */
+.badge {
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+/* ─── Notification Bell ─────────────────────────────────── */
+.bell-badge {
+  animation: scaleIn 0.3s cubic-bezier(.34,1.56,.64,1) both;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+/* ─── Selection ─────────────────────────────────────────── */
+::selection { background: rgba(80,68,229,0.3); color: inherit; }
 
 .myfont {
   font-family: "'Syne',sans-serif";
-  background-color: yellowgreen;
 }

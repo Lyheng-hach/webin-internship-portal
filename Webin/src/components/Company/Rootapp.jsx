@@ -247,10 +247,13 @@ const Rootapp = () => {
           <main className="flex-1 overflow-y-auto p-6">
             {loading ? (
               <div className="flex items-center justify-center h-full">
-                <div className="text-slate-500 text-sm font-mono animate-pulse">Loading data…</div>
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-8 h-8 border-2 border-sky-500 border-t-transparent rounded-full animate-spin"/>
+                  <div className="text-slate-500 text-sm">Loading data…</div>
+                </div>
               </div>
             ) : (
-              <>
+              <div key={page} className="animate-fade-up">
                 {page==="dashboard"     && <Dashboard     onNavigate={setPage} notifs={notifs} company={company} positions={positions} applications={applications} />}
                 {page==="positions"     && <Positions     positions={positions} setPositions={setPositions} />}
                 {page==="applications"  && <Applications  onNavigate={setPage} applications={applications} setApplications={setApplications} />}
@@ -258,7 +261,7 @@ const Rootapp = () => {
                 {page==="interviews"    && <Interviews    interviews={interviews} setInterviews={setInterviews} applications={applications} />}
                 {page==="notifications" && <Notifications />}
                 {page==="profile"       && <CompanyProfile company={company} onProfileCreated={handleProfileCreated} />}
-              </>
+              </div>
             )}
           </main>
         </div>

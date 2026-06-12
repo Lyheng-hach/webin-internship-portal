@@ -222,17 +222,20 @@ const Rootapp = () => {
           <main className="flex-1 overflow-y-auto p-6">
             {loading ? (
               <div className="flex items-center justify-center h-full">
-                <div className="text-slate-500 text-sm font-mono animate-pulse">Loading data…</div>
+                <div className="flex flex-col items-center gap-3">
+                  <div className="w-8 h-8 border-2 border-sky-500 border-t-transparent rounded-full animate-spin"/>
+                  <div className="text-slate-500 text-sm">Loading data…</div>
+                </div>
               </div>
             ) : (
-              <>
+              <div key={page} className="animate-fade-up">
                 {page==="dashboard"     && <Dashboard      onNavigate={setPage} notifs={notifs} supervisor={supervisor} students={myInterns} />}
                 {page==="students"      && <Students        availableInterns={availableInterns} myInterns={myInterns} onClaim={handleClaim} incomingRequests={incomingRequests} onRespond={handleRespond} supNotifs={supNotifs} />}
                 {page==="evaluations"   && <Evaluations    myInterns={myInterns} />}
                 {page==="monitoring"    && <Monitoring     myInterns={myInterns} />}
                 {page==="notifications" && <NotificationsPage notifs={notifs} onMarkRead={markRead} onMarkAll={markAll} />}
                 {page==="profile"       && <SupervisorProfile supervisor={supervisor} />}
-              </>
+              </div>
             )}
           </main>
         </div>

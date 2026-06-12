@@ -116,10 +116,12 @@ export default function AdminRootapp() {
 
           {/* Content */}
           <main className="flex-1 overflow-y-auto p-6">
-            {page === "dashboard" && <Dashboard onNavigate={setPage} />}
-            {page === "users"     && <Users />}
-            {page === "companies" && <Companies />}
-            {page === "audit"     && <AuditLog />}
+            <div key={page} className="animate-fade-up">
+              {page === "dashboard" && <Dashboard onNavigate={setPage} />}
+              {page === "users"     && <Users />}
+              {page === "companies" && <Companies />}
+              {page === "audit"     && <AuditLog />}
+            </div>
           </main>
         </div>
       </div>
